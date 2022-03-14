@@ -110,6 +110,26 @@ const Register = () => {
                             at least 6 characters
                         </small>
                     </div>
+
+
+                    <div>
+
+                        <small className={hasSixChar ? 'text-success' : 'text-danger'}>
+                            at least 6 characters
+                        </small>
+                    </div>
+                    <div>
+
+                        <small className={hasSixChar ? 'text-success' : 'text-danger'}>
+                            at least 6 characters
+                        </small>
+                    </div>
+                    <div>
+
+                        <small className={hasSixChar ? 'text-success' : 'text-danger'}>
+                            at least 6 characters
+                        </small>
+                    </div>
                 </div>
             </div>
 
