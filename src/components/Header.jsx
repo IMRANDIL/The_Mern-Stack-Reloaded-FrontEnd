@@ -2,20 +2,31 @@ import React from 'react'
 
 import { Navbar, Container, Nav } from 'react-bootstrap'
 
+import { Link } from 'react-router-dom'
 
 
 
 
 const Header = () => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="primary navbar-dark" expand="lg">
             <Container>
-                <Navbar.Brand href="/" className='me-auto'>The_Auth</Navbar.Brand>
+                <Navbar.Brand className='me-auto' >
+
+                    <Link to='/' className='navbar-brand'>The_Auth</Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/login">Login</Nav.Link>
-                        <Nav.Link href="/signup">Sign Up</Nav.Link>
+                        <Link to='/login' className='nav-link' >
+                            Login
+                        </Link>
+
+                        <Link to='/register' className='nav-link'>
+                            Register
+                        </Link>
+
+
 
                     </Nav>
                 </Navbar.Collapse>
