@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 //design...materialUI...
 import TextField from '@mui/material/TextField';
 
-import { InputAdornment, IconButton, OutlinedInput, FormControl, InputLabel, Button } from '@mui/material';
+import { InputAdornment, IconButton, OutlinedInput, FormControl, InputLabel, Button, FormHelperText } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -98,7 +98,7 @@ const Register = () => {
             <div className="form-group mt-3">
                 <FormControl size='small' variant='outlined' className='form-control'>
 
-                    <InputLabel>confimPassword</InputLabel>
+                    <InputLabel>confirmPassword</InputLabel>
                     <OutlinedInput label='confirmPassword' type={!showPassword ? 'password' : 'text'} value={confirmPass} onChange={e => setConfirmPass(e.target.value)} fullWidth className='p-2' endAdornment={
                         <InputAdornment position='end'>
                             <IconButton edge='end' onClick={handleChange} onMouseDown={handleMouseDownPassword}>
@@ -109,6 +109,13 @@ const Register = () => {
                     } />
 
                 </FormControl>
+
+                {password && confirmPass && (
+                    <FormHelperText className='ml-1 mt-1'>
+                        {password === confirmPass ? <span className='text-success'>Password does match</span> : <span className='text-danger'>Password does not match</span>}
+
+
+                    </FormHelperText>)}
             </div>
 
 
