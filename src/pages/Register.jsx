@@ -36,6 +36,17 @@ const Register = () => {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    //password validation....
+
+    let hasSixChar = password.length >= 6;
+    let hasLowerChar = /(.*[a-z].*)/.test(password);
+    let hasUpperChar = /(.*[A-Z].*)/.test(password);
+    let hasNumber = /(.*[0-9].*)/.test(password);
+    let hasSpecialChar = /(.*[^a-zA-Z0-9].*)/.test(password);
+
+
+
+
 
 
     const handleChange = () => {
@@ -91,6 +102,15 @@ const Register = () => {
                     } />
 
                 </FormControl>
+
+                <div className='ml-1'>
+                    <div>
+
+                        <small className={ }>
+                            at least 6 characters
+                        </small>
+                    </div>
+                </div>
             </div>
 
 
