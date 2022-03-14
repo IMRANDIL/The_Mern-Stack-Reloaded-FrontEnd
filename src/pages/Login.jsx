@@ -41,6 +41,11 @@ const Login = () => {
     }
 
 
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault()
+    }
+
+
 
 
     return (
@@ -59,9 +64,9 @@ const Login = () => {
                 <FormControl size='small' variant='outlined' className='form-control'>
 
                     <InputLabel>Password</InputLabel>
-                    <OutlinedInput label='Password' value={password} onChange={e => setPassword(e.target.value)} fullWidth className='p-1' endAdornment={
-                        <InputAdornment>
-                            <IconButton edge='end' onClick={handleChange}>
+                    <OutlinedInput label='Password' type={!showPassword ? 'password' : 'text'} value={password} onChange={e => setPassword(e.target.value)} fullWidth className='p-2' endAdornment={
+                        <InputAdornment position='end'>
+                            <IconButton edge='end' onClick={handleChange} onMouseDown={handleMouseDownPassword}>
                                 {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
 
                             </IconButton>
