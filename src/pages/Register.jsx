@@ -102,35 +102,45 @@ const Register = () => {
                     } />
 
                 </FormControl>
+                {password && (
 
-                <div className='ml-1'>
-                    <div>
+                    <div className='ml-1' style={{ columns: 3 }}>
+                        <div>
 
-                        <small className={hasSixChar ? 'text-success' : 'text-danger'}>
-                            at least 6 characters
-                        </small>
-                    </div>
+                            <small className={hasSixChar ? 'text-success' : 'text-danger'}>
+                                at least 6 characters
+                            </small>
+                        </div>
 
 
-                    <div>
+                        <div>
 
-                        <small className={hasSixChar ? 'text-success' : 'text-danger'}>
-                            at least 6 characters
-                        </small>
-                    </div>
-                    <div>
+                            <small className={hasLowerChar ? 'text-success' : 'text-danger'}>
+                                at least one lower case
+                            </small>
+                        </div>
+                        <div>
 
-                        <small className={hasSixChar ? 'text-success' : 'text-danger'}>
-                            at least 6 characters
-                        </small>
-                    </div>
-                    <div>
+                            <small className={hasUpperChar ? 'text-success' : 'text-danger'}>
+                                at least one upper case
+                            </small>
+                        </div>
+                        <div>
 
-                        <small className={hasSixChar ? 'text-success' : 'text-danger'}>
-                            at least 6 characters
-                        </small>
-                    </div>
-                </div>
+                            <small className={hasNumber ? 'text-success' : 'text-danger'}>
+                                at least one number
+                            </small>
+                        </div>
+
+
+                        <div>
+
+                            <small className={hasSpecialChar ? 'text-success' : 'text-danger'}>
+                                at least one special character
+                            </small>
+                        </div>
+
+                    </div>)}
             </div>
 
 
@@ -166,7 +176,7 @@ const Register = () => {
 
 
             <div className="text-center mt-4">
-                <Button variant='contained' disabled={!email || !password || !confirmPass || !username}>Submit</Button>
+                <Button variant='contained' disabled={!email || !password || !confirmPass || !username || password !== confirmPass || !hasSixChar || !hasLowerChar || !hasSpecialChar || !hasUpperChar || !hasNumber}>Submit</Button>
             </div>
         </div >
     )
