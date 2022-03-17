@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 
 //design...materialUI...
@@ -13,10 +14,11 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import CancelIcon from '@mui/icons-material/Cancel';
 
+//import api functions...
 
+import { register } from '../api/user'
 
-
-
+import { toast } from 'react-toastify'
 
 
 
@@ -27,11 +29,13 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 const Register = () => {
 
+    const navigate = useNavigate()
+
     //form states.....
     const [email, setEmail] = useState('');
 
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
+    const [userName, setUsername] = useState('');
     const [confirmPass, setConfirmPass] = useState('')
 
     const [showPassword, setShowPassword] = useState(false)
@@ -61,6 +65,34 @@ const Register = () => {
 
 
 
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const res = await register({ userName, email, password });
+
+            if (res.error) toast.error(res.error);
+            else {
+                toast.success(res.message);
+                //redirect the user...
+
+                navigate('/login')
+            }
+
+
+        } catch (error) {
+            toast.error(error)
+        }
+
+    }
+
+
+
+
+
+
     return (
         <div className='container mt-5 mb-5 col-10 col-sm-8 col-md-6 col-lg-5'>
 
@@ -71,7 +103,7 @@ const Register = () => {
 
 
             <div className="form-group">
-                <TextField variant='outlined' fullWidth className='form-control' label="UserName" id='userName' value={username} onChange={e => setUsername(e.target.value)} />
+                <TextField variant='outlined' fullWidth className='form-control' label="UserName" id='userName' value={userName} onChange={e => setUsername(e.target.value)} />
             </div>
 
 
@@ -168,7 +200,7 @@ const Register = () => {
 
 
             <div className="text-center mt-4">
-                <Button variant='contained' disabled={!email || !password || !confirmPass || !username || password !== confirmPass || !hasSixChar || !hasLowerChar || !hasSpecialChar || !hasUpperChar || !hasNumber}>Submit</Button>
+                <Button variant='contained' disabled={!email || !password || !confirmPass || !userName || password !== confirmPass || !hasSixChar || !hasLowerChar || !hasSpecialChar || !hasUpperChar || !hasNumber} onClick={handleRegister}>Submit</Button>
             </div>
         </div >
     )

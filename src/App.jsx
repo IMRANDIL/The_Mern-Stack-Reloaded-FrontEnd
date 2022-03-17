@@ -2,6 +2,16 @@ import React from 'react';
 
 import './App.css';
 
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
+
+
+
 import {
   BrowserRouter,
   Routes,
@@ -31,6 +41,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+        <ToastContainer />
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />

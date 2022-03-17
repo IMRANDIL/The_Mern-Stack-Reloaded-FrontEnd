@@ -21,7 +21,7 @@ export const register = async ({ userName, email, password } = {}) => {
 
         const data = await res.json();
 
-        console.log(data);
+
         return data;
 
 

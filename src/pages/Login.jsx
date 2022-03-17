@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 //design...materialUI...
 import TextField from '@mui/material/TextField';
@@ -9,7 +11,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-
+import { login } from '../api/user'
 
 
 
@@ -27,6 +29,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const Login = () => {
 
+    const navigate = useNavigate()
+
     //form states.....
     const [email, setEmail] = useState('');
 
@@ -43,6 +47,28 @@ const Login = () => {
 
     const handleMouseDownPassword = (e) => {
         e.preventDefault()
+    }
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const res = await login({ email, password });
+
+            if (res.error) toast.error(res.error);
+
+            else {
+                toast.success(res.message);
+                //redirect home now
+                navigate('/')
+            }
+
+
+
+        } catch (error) {
+            toast.error(error)
+        }
     }
 
 
@@ -76,7 +102,7 @@ const Login = () => {
                 </FormControl>
             </div>
             <div className="text-center mt-4">
-                <Button variant='contained' disabled={!email || !password}>Submit</Button>
+                <Button variant='contained' disabled={!email || !password} onClick={handleLogin}>Submit</Button>
             </div>
         </div >
     )
