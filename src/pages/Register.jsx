@@ -9,9 +9,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-
-
+import CancelIcon from '@mui/icons-material/Cancel';
 
 
 
@@ -107,37 +107,29 @@ const Register = () => {
                     <div className='ml-1' style={{ columns: 3 }}>
                         <div>
 
-                            <small className={hasSixChar ? 'text-success' : 'text-danger'}>
-                                at least 6 characters
-                            </small>
+                            {hasSixChar ? (<span className='text-success'> <CheckCircleIcon className='mr-1' fontSize='small' />   <small>at least 6 characters</small></span>) : (<span className='text-danger'><CancelIcon className='mr-1' fontSize='small' /> <small>at least 6 characters</small></span>)}
                         </div>
 
 
                         <div>
 
-                            <small className={hasLowerChar ? 'text-success' : 'text-danger'}>
-                                at least one lower case
-                            </small>
-                        </div>
-                        <div>
-
-                            <small className={hasUpperChar ? 'text-success' : 'text-danger'}>
-                                at least one upper case
-                            </small>
-                        </div>
-                        <div>
-
-                            <small className={hasNumber ? 'text-success' : 'text-danger'}>
-                                at least one number
-                            </small>
+                            {hasLowerChar ? (<span className='text-success'> <CheckCircleIcon className='mr-1' fontSize='small' />   <small>at least 1 lowercase</small></span>) : (<span className='text-danger'><CancelIcon className='mr-1' fontSize='small' /> <small>at least 1 lowercase</small></span>)}
                         </div>
 
 
                         <div>
 
-                            <small className={hasSpecialChar ? 'text-success' : 'text-danger'}>
-                                at least one special character
-                            </small>
+                            {hasUpperChar ? (<span className='text-success'> <CheckCircleIcon className='mr-1' fontSize='small' />   <small>at least 1 uppercase</small></span>) : (<span className='text-danger'><CancelIcon className='mr-1' fontSize='small' /> <small>at least 1 uppercase</small></span>)}
+                        </div>
+                        <div>
+
+                            {hasNumber ? (<span className='text-success'> <CheckCircleIcon className='mr-1' fontSize='small' />   <small>at least 1 number</small></span>) : (<span className='text-danger'><CancelIcon className='mr-1' fontSize='small' /> <small>at least 1 number</small></span>)}
+                        </div>
+
+
+                        <div>
+
+                            {hasSpecialChar ? (<span className='text-success'> <CheckCircleIcon className='mr-1' fontSize='small' />   <small>at least 1 special character</small></span>) : (<span className='text-danger'><CancelIcon className='mr-1' fontSize='small' /> <small>at least 1 special character</small></span>)}
                         </div>
 
                     </div>)}
