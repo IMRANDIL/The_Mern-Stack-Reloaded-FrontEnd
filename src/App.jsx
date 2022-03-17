@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 
-import { ToastContainer } from 'react-toastify';
+
+import { toast, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,6 +18,8 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate
+
 } from "react-router-dom";
 
 import Login from './pages/Login'
@@ -25,7 +28,9 @@ import Home from './pages/Home'
 import Header from './components/Header';
 
 
+//import get user function...
 
+import { getUser } from '../src/api/user'
 
 
 
@@ -36,7 +41,33 @@ import Header from './components/Header';
 
 function App() {
 
-  const [user, setUser] = useState(null)
+
+
+
+  const [user, setUser] = useState(null);
+
+
+
+  useEffect(() => {
+
+    const unsubscribe = getUser().then((res) => {
+      if (res.error) toast(res.error);
+
+      else {
+        setUser(res.userName)
+      }
+
+    }).catch((err) => toast(err))
+
+
+    return () => unsubscribe;
+
+  }, []);
+
+
+
+
+
 
 
   return (
@@ -46,9 +77,10 @@ function App() {
           <ToastContainer />
           <Header />
           <Routes>
+
             <Route path='/' element={user ? <Home /> : <Login />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
+            <Route path='/register' element={!user ? <Register /> : <Navigate to='/' />} />
 
 
 
