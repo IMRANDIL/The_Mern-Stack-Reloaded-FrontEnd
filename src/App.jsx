@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 
@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import { userContext } from './reactContext';
 
 
 
@@ -35,23 +36,24 @@ import Header from './components/Header';
 
 function App() {
 
-
+  const [user, setUser] = useState(null)
 
 
   return (
     <div>
       <BrowserRouter>
-        <ToastContainer />
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+        <userContext.Provider value={{ user, setUser }}>
+          <ToastContainer />
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
 
 
 
-        </Routes>
-
+          </Routes>
+        </userContext.Provider>
 
       </BrowserRouter>
     </div>

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
+
+import { userContext } from '../reactContext';
 
 //design...materialUI...
 import TextField from '@mui/material/TextField';
@@ -27,9 +29,18 @@ import { login } from '../api/user'
 
 
 
+
+
 const Login = () => {
 
-    const navigate = useNavigate()
+
+
+
+
+    const navigate = useNavigate();
+
+
+    const { setUser } = useContext(userContext)
 
     //form states.....
     const [email, setEmail] = useState('');
@@ -60,6 +71,8 @@ const Login = () => {
 
             else {
                 toast.success(res.message);
+                //set user..
+                setUser(res.userName)
                 //redirect home now
                 navigate('/')
             }
