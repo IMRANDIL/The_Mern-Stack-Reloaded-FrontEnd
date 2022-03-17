@@ -9,7 +9,7 @@ export const register = async ({ userName, email, password } = {}) => {
     try {
 
 
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/user/register`, {
+        const res = await fetch(`https://auth-backend.vercel.app/user/register`, {
             method: 'POST',
             headers: {
                 Accept: 'Application/json',
@@ -61,13 +61,16 @@ export const login = async ({ email, password } = {}) => {
     try {
 
 
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
+        const res = await fetch(`https://auth-backend.vercel.app/user/login`, {
             method: 'POST',
             credentials: 'include',
             headers: {
                 Accept: 'Application/json',
-                "Content-Type": "Application/json"
+                "Content-Type": "Application/json",
+
             },
+            withCredentials: true,
+
             body: JSON.stringify(user)
         });
 
@@ -100,7 +103,7 @@ export const login = async ({ email, password } = {}) => {
 export const logout = async () => {
     try {
 
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/user/logout`, {
+        const res = await fetch(`https://auth-backend.vercel.app/user/logout`, {
             method: 'GET',
             credentials: 'include'
         });
@@ -131,7 +134,7 @@ export const logout = async () => {
 export const getUser = async () => {
     try {
 
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/user`, {
+        const res = await fetch(`https://auth-backend.vercel.app/user`, {
             method: 'GET',
             credentials: 'include'
         });
