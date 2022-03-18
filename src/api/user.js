@@ -67,9 +67,10 @@ export const login = async ({ email, password } = {}) => {
             headers: {
                 Accept: 'Application/json',
                 "Content-Type": "Application/json",
+                "Access-Control-Allow-Credentials": true,
 
             },
-            withCredentials: true,
+
 
             body: JSON.stringify(user)
         });
